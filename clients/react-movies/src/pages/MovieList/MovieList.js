@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import './MovieList.css'
 
 function MovieList() {
-  const movies = [
-    { id: 1, name: 'Hackers', released: 1995 },
-    { id: 2, name: 'Pulp Fiction', released: 1994 },
-  ];
+  const [state, setState] = useState({ movies: [] });  
+
+  useEffect(() => {
+    async function fetchMovies() {
+      const moviesResp = await fetch('/movies.json');
+      const movies = await (moviesResp.json());            
+      setState({ movies });
+    }
+    fetchMovies();    
+  }, []);
 
   function oneMovie(movie) {
     return (
-    <p id={movie.id}>{movie.name} - {movie.released}</p>
+    <p key={movie.id}><Link to={`/movie-detail/${movie.id}`}>{movie.name} - {movie.released}</Link></p>
     );
   }
 
   return (
     <div className="MovieList">
-      { movies.map(movie => oneMovie(movie))  }
+      { state.movies.map(movie => oneMovie(movie))  }
     </div>
   );
 }
