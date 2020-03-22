@@ -1,21 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './MovieList.css'
 
-function MovieList() {
-  const [state, setState] = useState({ movies: [] });
-
-  useEffect(() => {
-    async function fetchMovies() {
-      const moviesResp = await fetch('/movies.json');
-      const movies = await (moviesResp.json());
-      movies.forEach((movie, idx) => { movie.id = idx + 1 });
-      setState({ movies });
-    }
-    fetchMovies();
-  }, []);
-
+function MovieList(props) {
   function oneMovie(movie) {
     return (
       <Link to={`/movie-detail/${movie.id}`} key={movie.id}>
@@ -32,7 +20,7 @@ function MovieList() {
 
   return (
     <div className="MovieList">
-      {state.movies.map(movie => oneMovie(movie))}
+      {props.movies.map(movie => oneMovie(movie))}
     </div>
   );
 }
