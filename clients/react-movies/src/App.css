@@ -3,13 +3,19 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #3f5072;
   height: 2em;
   display: flex;
   flex-direction: column;
   align-items: left;
   justify-content: center;
-  padding: 0.2em;
+  padding: 0.2em 1em;
   font-size: 1.5em;
-  color: white;
+  color: white;  
+}
+
+.MainContent {
+  width: 80vw;
+  max-width: 1600px;  
+  margin: auto;
 }

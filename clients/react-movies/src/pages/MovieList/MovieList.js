@@ -4,26 +4,35 @@ import { Link } from 'react-router-dom';
 import './MovieList.css'
 
 function MovieList() {
-  const [state, setState] = useState({ movies: [] });  
+  const [state, setState] = useState({ movies: [] });
 
   useEffect(() => {
     async function fetchMovies() {
       const moviesResp = await fetch('/movies.json');
-      const movies = await (moviesResp.json());            
+      const movies = await (moviesResp.json());
+      movies.forEach((movie, idx) => { movie.id = idx + 1 });
       setState({ movies });
     }
-    fetchMovies();    
+    fetchMovies();
   }, []);
 
   function oneMovie(movie) {
     return (
-    <p key={movie.id}><Link to={`/movie-detail/${movie.id}`}>{movie.name} - {movie.released}</Link></p>
+      <Link to={`/movie-detail/${movie.id}`} key={movie.id}>
+        <div className="MovieCard">
+          <img src={movie.poster || 'large_movie_poster.png'} alt="Poster for {movie.titke}" className="PosterImage" />
+          <div>
+            <h3>{movie.title}</h3>
+            <p>{movie.description}</p>
+          </div>
+        </div>
+      </Link>
     );
   }
 
   return (
     <div className="MovieList">
-      { state.movies.map(movie => oneMovie(movie))  }
+      {state.movies.map(movie => oneMovie(movie))}
     </div>
   );
 }

@@ -1,3 +1,20 @@
 .MovieList {
+ 
+}
+
+.MovieCard {
+  display: flex;
+  background-color: rgb(162, 150, 176);
+  padding: 1em;
   margin: 1em;
+  border-radius: 4px;
+}
+
+.MovieCard a {
+  text-decoration: none;
+}
+
+.PosterImage {
+  margin-right: 1em;
+  max-height: 7em;
 }

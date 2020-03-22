@@ -11,10 +11,12 @@ function App() {
       <header className="App-header">
         <h3>Movie Browser</h3>
       </header>
-      <Switch>
-        <Route path="/" component={MovieList} exact />
-        <Route path="/movie-detail/:id" component={MovieDetail} />
-      </Switch>      
+      <main className="MainContent">
+        <Switch>
+          <Route path="/" component={MovieList} exact />
+          <Route path="/movie-detail/:id" component={MovieDetail} />
+        </Switch>      
+      </main>
     </div>
   );
 }
