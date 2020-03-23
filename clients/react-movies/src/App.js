@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Link } from 'react-router-dom'
 
 import './App.css';
 import MovieList from './pages/MovieList';
@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h3>Movie Browser</h3>
+        <h3><Link to="/">Movie Browser</Link></h3>
       </header>
       <main className="MainContent">
         <Switch>
