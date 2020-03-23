@@ -8,7 +8,7 @@ function MovieList(props) {
     return (
       <Link to={`/movie-detail/${movie.id}`} key={movie.id}>
         <div className="MovieCard">
-          <img src={movie.poster || 'large_movie_poster.png'} alt="Poster for {movie.titke}" className="PosterImage" />
+          <img src={movie.poster || 'large_movie_poster.png'}  alt={`Poster for ${movie.title}`} className="PosterImage" />
           <div>
             <h3>{movie.title}</h3>
             <p>{movie.description}</p>
