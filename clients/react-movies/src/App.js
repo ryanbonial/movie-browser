@@ -13,7 +13,7 @@ function App() {
       const moviesResp = await fetch('/movies.json');
       const movies = await (moviesResp.json());
       movies.forEach((movie, idx) => { movie.id = idx + 1 });
-      setMovies(movies);
+      setMovies([...movies]);
     }
     fetchMovies();
   }, []);
