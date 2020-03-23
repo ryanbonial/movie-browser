@@ -6,14 +6,14 @@ import MovieList from './pages/MovieList';
 import MovieDetail from './pages/MovieDetail';
 
 function App() {
-  const [state, setState] = useState({ movies: [] });
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     async function fetchMovies() {
       const moviesResp = await fetch('/movies.json');
       const movies = await (moviesResp.json());
       movies.forEach((movie, idx) => { movie.id = idx + 1 });
-      setState({ movies });
+      setMovies(movies);
     }
     fetchMovies();
   }, []);
@@ -25,8 +25,8 @@ function App() {
       </header>
       <main className="MainContent">
         <Switch>
-          <Route path="/" exact render={(props) => <MovieList {...props} movies={state.movies} />} />
-          <Route path="/movie-detail/:id"  render={(props) => <MovieDetail {...props} movies={state.movies} />} />
+          <Route path="/" exact render={(props) => <MovieList {...props} movies={movies} />} />
+          <Route path="/movie-detail/:id"  render={(props) => <MovieDetail {...props} movies={movies} />} />
         </Switch>      
       </main>
     </div>
